@@ -14,12 +14,13 @@ function App() {
     <div className="App" style={{ width: "60%", margin: "auto" }}>
       {dataArticle.map((article, id) => (
         <div
+          key={id + 3}
           dangerouslySetInnerHTML={{
             __html: `
             ${article.node.title}<br />
+            ${article.node.categories.nodes[0].name}<br />
             ${article.node.date}
-            ${article.node.content}
-            ${article.node.data}`,
+            ${article.node.content}`,
           }}
         />
       ))}
