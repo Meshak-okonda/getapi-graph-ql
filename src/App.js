@@ -1,5 +1,6 @@
 import { getArticles } from "./api/getApi";
 import { useState, useEffect } from "react";
+
 import "./App.css";
 
 function App() {
@@ -8,11 +9,20 @@ function App() {
     const req = getArticles();
     req.then((data) => setDataArticle(data));
   }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>{dataArticle.map((article) => console.log(article))}</p>
-      </header>
+    <div className="App" style={{ width: "60%", margin: "auto" }}>
+      {dataArticle.map((article, id) => (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `
+            ${article.node.title}<br />
+            ${article.node.date}
+            ${article.node.content}
+            ${article.node.data}`,
+          }}
+        />
+      ))}
     </div>
   );
 }
